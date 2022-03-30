@@ -1,0 +1,729 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="项目">
+		<xs:annotation>
+			<xs:documentation>标准接口文档</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="项目管理"/>
+				<xs:element ref="其他数据" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="文件类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="结构版本" type="xs:integer" use="required"/>
+			<xs:attribute name="地区号" type="xs:integer" use="required"/>
+			<xs:attribute name="计价规则" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="6"/>
+						<xs:enumeration value="7"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="项目ID" type="xs:string"/>
+			<xs:attribute name="项目编号" type="xs:string"/>
+			<xs:attribute name="项目名称" type="xs:string"/>
+			<xs:attribute name="招标版本" type="xs:integer"/>
+			<xs:attribute name="招标人" type="xs:string"/>
+			<xs:attribute name="招标法人" type="xs:string"/>
+			<xs:attribute name="招标代理人" type="xs:string"/>
+			<xs:attribute name="招标代理人法人" type="xs:string"/>
+			<xs:attribute name="工期要求" type="xs:string"/>
+			<xs:attribute name="质量要求" type="xs:string"/>
+			<xs:attribute name="编制说明" type="xs:string"/>
+			<xs:attribute name="投标单位" type="xs:string"/>
+			<xs:attribute name="投标报价" type="xs:decimal"/>
+			<xs:attribute name="项目负责人" type="xs:string"/>
+			<xs:attribute name="投标保证金" type="xs:decimal"/>
+			<xs:attribute name="工期填报" type="xs:string"/>
+			<xs:attribute name="质量填报" type="xs:string"/>
+			<xs:attribute name="计价锁号" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="项目管理">
+		<xs:annotation>
+			<xs:documentation>项目结点</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="技术措施" minOccurs="0"/>
+				<xs:element ref="组织措施" minOccurs="0"/>
+				<xs:element ref="其他项目" minOccurs="0"/>
+				<xs:element ref="其他费用" minOccurs="0"/>
+				<xs:element ref="招标要求材料" minOccurs="0"/>
+				<xs:element ref="工料机资源" minOccurs="0"/>
+				<xs:element ref="现场监控临时宿舍取暖降温费用" minOccurs="0"/>
+				<xs:element ref="单位工程" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="整体工程ID" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="是否包含分部分项" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含措施项目" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含其他项目" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="单位工程">
+		<xs:annotation>
+			<xs:documentation>单位工程结点</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="技术措施" minOccurs="0"/>
+				<xs:element ref="组织措施" minOccurs="0"/>
+				<xs:element ref="其他项目" minOccurs="0"/>
+				<xs:element ref="其他费用" minOccurs="0"/>
+				<xs:element ref="工料机汇总" minOccurs="0"/>
+				<xs:element ref="专业工程" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="单位工程ID" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="是否包含分部分项" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含措施项目" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含其他项目" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="专业工程">
+		<xs:annotation>
+			<xs:documentation>专业工程结点</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="分部分项" minOccurs="0"/>
+				<xs:element ref="技术措施" minOccurs="0"/>
+				<xs:element ref="组织措施" minOccurs="0"/>
+				<xs:element ref="其他项目" minOccurs="0"/>
+				<xs:element ref="其他费用" minOccurs="0"/>
+				<xs:element ref="工料机汇总" minOccurs="0"/>
+			</xs:sequence>
+			<xs:attribute name="专业工程ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="专业类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="8"/>
+						<xs:enumeration value="10"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="是否包含分部分项" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含措施项目" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否包含其他项目" type="xs:boolean" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="分部分项">
+		<xs:annotation>
+			<xs:documentation>分部分项工程量清单及计价表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="分部" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="技术措施">
+		<xs:annotation>
+			<xs:documentation>技术措施项目清单及计价表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="分部" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="技措ID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="分部">
+		<xs:annotation>
+			<xs:documentation>清单及计价表标题</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="分部" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="清单" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="分部ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="工程量" type="xs:decimal" use="required"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="清单">
+		<xs:annotation>
+			<xs:documentation>清单及计价表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="定额" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="招标关联材料" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="工料机分析" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="清单ID" type="xs:string" use="required"/>
+			<xs:attribute name="序号" type="xs:integer" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="项目特征" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="工程量" type="xs:decimal" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="人工费" type="xs:decimal"/>
+			<xs:attribute name="人工费扩展" type="xs:decimal"/>
+			<xs:attribute name="材料费" type="xs:decimal"/>
+			<xs:attribute name="材料费扩展" type="xs:decimal"/>
+			<xs:attribute name="机械费" type="xs:decimal"/>
+			<xs:attribute name="机械费扩展" type="xs:decimal"/>
+			<xs:attribute name="管理费" type="xs:decimal"/>
+			<xs:attribute name="利润" type="xs:decimal"/>
+			<xs:attribute name="风险费" type="xs:decimal"/>
+			<xs:attribute name="暂定价" type="xs:decimal"/>
+			<xs:attribute name="预算价" type="xs:decimal"/>
+			<xs:attribute name="投标单价上限" type="xs:decimal"/>
+			<xs:attribute name="投标单价下限" type="xs:decimal"/>
+			<xs:attribute name="工作内容" type="xs:string"/>
+			<xs:attribute name="重点清单" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="定额">
+		<xs:annotation>
+			<xs:documentation>定额分析表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="工料机分析" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="定额ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="工程量" type="xs:decimal" use="required"/>
+			<xs:attribute name="人工费" type="xs:decimal"/>
+			<xs:attribute name="人工费扩展" type="xs:decimal"/>
+			<xs:attribute name="材料费" type="xs:decimal"/>
+			<xs:attribute name="材料费扩展" type="xs:decimal"/>
+			<xs:attribute name="机械费" type="xs:decimal"/>
+			<xs:attribute name="机械费扩展" type="xs:decimal"/>
+			<xs:attribute name="管理费" type="xs:decimal"/>
+			<xs:attribute name="利润" type="xs:decimal"/>
+			<xs:attribute name="风险费" type="xs:decimal"/>
+			<xs:attribute name="是否定额" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="招标关联材料">
+		<xs:annotation>
+			<xs:documentation>招标关联材料分析表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="招标材料ID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="工料机分析">
+		<xs:annotation>
+			<xs:documentation>工料机分析表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="工料机ID" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="组织措施">
+		<xs:annotation>
+			<xs:documentation>组织措施项目清单及计价表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="组措标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="组措记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="组措ID" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="组措标题">
+		<xs:annotation>
+			<xs:documentation>组织措施项目清单及计价表标题</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="组措标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="组措记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="组措ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string"/>
+			<xs:attribute name="组措类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="16"/>
+						<xs:enumeration value="18"/>
+						<xs:enumeration value="19"/>
+						<xs:enumeration value="110"/>
+						<xs:enumeration value="111"/>
+						<xs:enumeration value="112"/>
+						<xs:enumeration value="113"/>
+						<xs:enumeration value="117"/>
+						<xs:enumeration value="119"/>
+						<xs:enumeration value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="组措记录">
+		<xs:annotation>
+			<xs:documentation>组织措施项目清单及计价表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence minOccurs="0">
+				<xs:element ref="安全文明施工措施" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="组措ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string"/>
+			<xs:attribute name="组措类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="16"/>
+						<xs:enumeration value="18"/>
+						<xs:enumeration value="19"/>
+						<xs:enumeration value="110"/>
+						<xs:enumeration value="111"/>
+						<xs:enumeration value="112"/>
+						<xs:enumeration value="113"/>
+						<xs:enumeration value="117"/>
+						<xs:enumeration value="119"/>
+						<xs:enumeration value="120"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="费率标志">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="费率上限" type="xs:decimal"/>
+			<xs:attribute name="费率下限" type="xs:decimal"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="安全文明施工措施">
+		<xs:annotation>
+			<xs:documentation>安全文明施工措施项目清单及计价表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="安全文明施工措施标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="安全文明施工措施记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="安全文明施工措施标题">
+		<xs:annotation>
+			<xs:documentation>安全文明施工措施项目清单及计价表标题</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="安全文明施工措施标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="安全文明施工措施记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="安文ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string" use="required"/>
+			<xs:attribute name="安文类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="14"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="安全文明施工措施记录">
+		<xs:annotation>
+			<xs:documentation>安全文明施工措施项目清单及计价表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="安文ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string" use="required"/>
+			<xs:attribute name="安文类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="14"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="现场监控临时宿舍取暖降温费用">
+		<xs:annotation>
+			<xs:documentation>现场监控、临时宿舍取暖降温费用分析表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="现场监控临时宿舍取暖降温费用标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="现场监控临时宿舍取暖降温费用记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="现场监控临时宿舍取暖降温费用标题">
+		<xs:annotation>
+			<xs:documentation>现场监控、临时宿舍取暖降温费用分析表标题</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="现场监控临时宿舍取暖降温费用标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="现场监控临时宿舍取暖降温费用记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="监控ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="现场监控临时宿舍取暖降温费用记录">
+		<xs:annotation>
+			<xs:documentation>现场监控、临时宿舍取暖降温费用分析表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="监控ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他项目">
+		<xs:annotation>
+			<xs:documentation>其它项目清单及计价表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="其他项目标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="其他项目记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他项目标题">
+		<xs:annotation>
+			<xs:documentation>其它项目清单及计价表标题</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element ref="其他项目标题" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element ref="其他项目记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:choice>
+			<xs:attribute name="其他项目ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="其他项目类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="31"/>
+						<xs:enumeration value="7"/>
+						<xs:enumeration value="9"/>
+						<xs:enumeration value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="付费标志" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="工作服务内容" type="xs:string"/>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他项目记录">
+		<xs:annotation>
+			<xs:documentation>其它项目清单及计价表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="其他项目ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="合价" type="xs:decimal"/>
+			<xs:attribute name="其他项目类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="11"/>
+						<xs:enumeration value="12"/>
+						<xs:enumeration value="13"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="31"/>
+						<xs:enumeration value="3"/>
+						<xs:enumeration value="7"/>
+						<xs:enumeration value="9"/>
+						<xs:enumeration value="4"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="付费标志" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="工作服务内容" type="xs:string"/>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他费用">
+		<xs:annotation>
+			<xs:documentation>其它费用表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="其他费用记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他费用记录">
+		<xs:annotation>
+			<xs:documentation>其它费用表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="费用ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="金额" type="xs:decimal"/>
+			<xs:attribute name="费用类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="4"/>
+						<xs:enumeration value="41"/>
+						<xs:enumeration value="42"/>
+						<xs:enumeration value="43"/>
+						<xs:enumeration value="5"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="费率" type="xs:decimal" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="招标要求材料">
+		<xs:annotation>
+			<xs:documentation>招标要求材料表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="招标材料记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="招标材料记录">
+		<xs:annotation>
+			<xs:documentation>招标要求材料表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="招标材料ID" type="xs:string" use="required"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" type="xs:string" use="required"/>
+			<xs:attribute name="规格型号" type="xs:string"/>
+			<xs:attribute name="品牌产地" type="xs:string"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="单价" type="xs:decimal" use="required"/>
+			<xs:attribute name="预算价" type="xs:decimal"/>
+			<xs:attribute name="投标单价上限" type="xs:decimal"/>
+			<xs:attribute name="投标单价下限" type="xs:decimal"/>
+			<xs:attribute name="工料机类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="招标材料状态" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="是否关联清单" type="xs:boolean" use="required"/>
+			<xs:attribute name="重点工料机" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="工料机资源">
+		<xs:annotation>
+			<xs:documentation>工料机资源信息表</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="工料机记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="工料机记录">
+		<xs:annotation>
+			<xs:documentation>工料机资源信息表记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="工料机ID" type="xs:string" use="required"/>
+			<xs:attribute name="招标材料ID" type="xs:string"/>
+			<xs:attribute name="编号" type="xs:string" use="required"/>
+			<xs:attribute name="名称" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:string"/>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="规格型号" type="xs:string"/>
+			<xs:attribute name="品牌产地" type="xs:string"/>
+			<xs:attribute name="单位" type="xs:string" use="required"/>
+			<xs:attribute name="数量" type="xs:decimal"/>
+			<xs:attribute name="单价" type="xs:decimal"/>
+			<xs:attribute name="单价扩展" type="xs:decimal"/>
+			<xs:attribute name="工料机类型" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="1"/>
+						<xs:enumeration value="2"/>
+						<xs:enumeration value="3"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="是否主要工料机" type="xs:boolean" use="required"/>
+			<xs:attribute name="是否未计价材料" use="required">
+				<xs:simpleType>
+					<xs:restriction base="xs:integer">
+						<xs:enumeration value="0"/>
+						<xs:enumeration value="1"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="备注" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="工料机汇总">
+		<xs:annotation>
+			<xs:documentation>工料机汇总信息</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="工料机分析" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他数据">
+		<xs:annotation>
+			<xs:documentation>除数据交互外的数据</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="其他数据记录" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="其他数据记录">
+		<xs:annotation>
+			<xs:documentation>其他数据记录</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="数据信息" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>
