@@ -1,4 +1,6 @@
 # pdf 拆分
+# py ./pdfSplit/pdfSplit.py -s 146 -e 199 -t input.pdf out.pdf
+
 from PyPDF2 import PdfFileWriter, PdfFileReader
 import click
 

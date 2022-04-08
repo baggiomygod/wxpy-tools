@@ -1,4 +1,6 @@
 # pdf水印
+# py ./simplePdfWatermark/simplePdfWatermark.py  -c "#FF0000" -o 0.3 -s 20 -x 180 -y 0 -w "zbd-watermark" -d input.pdf out.pdf`
+
 from io import BytesIO
 from re import match
 
@@ -8,7 +10,6 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.colors import Color
 from webcolors import hex_to_rgb
 import click
-
 
 @click.command()
 @click.argument('filename')
