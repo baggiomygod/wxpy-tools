@@ -1,5 +1,9 @@
+# -*- coding: utf-8 -*-
 import wx
+import os,sys
 
+# 解决不支持相对路径问题，兼容win和linux路径
+os.chdir(sys.path[0])
 class MyPopupMenu(wx.Menu):
   
     def __init__(self, parent):
@@ -46,7 +50,7 @@ class SubMenu(wx.Frame):
 
     # 退出按钮
     quitMenu = wx.MenuItem(fileMenu, wx.ID_EXIT, '&Quit\tCtrl+q')
-    quitMenu.SetBitmap(wx.Bitmap('D:\\work\\jyjs-projects\\examples\\python\\wxPy-my-tools\\src\\wxpyDemo\\assets\\icons\\quit.png'))
+    quitMenu.SetBitmap(wx.Bitmap('../assets/icons/quit.png'))
     fileMenu.Append(quitMenu)
 
     # 退出按钮绑定退出事件
@@ -70,8 +74,8 @@ class SubMenu(wx.Frame):
 
     self.Bind(wx.EVT_MENU, self.ToggleToolBar, self.toolMenu)
     self.toolbar = self.CreateToolBar()
-    q1tool = self.toolbar.AddTool(wx.ID_ANY, '', wx.Bitmap('D:\\work\\jyjs-projects\\examples\\python\\wxPy-my-tools\\src\\wxpyDemo\\assets\\icons\\exit.png'))
-    q2tool = self.toolbar.AddTool(wx.ID_ANY, '', wx.Bitmap('D:\\work\\jyjs-projects\\examples\\python\\wxPy-my-tools\\src\\wxpyDemo\\assets\\icons\\quit.png'))
+    q1tool = self.toolbar.AddTool(wx.ID_ANY, '', wx.Bitmap('../assets/icons/exit.png'))
+    q2tool = self.toolbar.AddTool(wx.ID_ANY, '', wx.Bitmap('../assets/icons/quit.png'))
     self.toolbar.Realize()
     self.Bind(wx.EVT_TOOL, self.OnQuit, q1tool)
     self.Bind(wx.EVT_TOOL, self.OnQuit, q2tool)
@@ -79,10 +83,10 @@ class SubMenu(wx.Frame):
 
     # 垂直布局toolbar
     vtoolbar1 = wx.ToolBar(self)
-    quitToolbar1 = vtoolbar1.AddTool(wx.ID_ANY, '', wx.Bitmap('D:\\work\\jyjs-projects\\examples\\python\\wxPy-my-tools\\src\\wxpyDemo\\assets\\icons\\quit.png'))
+    quitToolbar1 = vtoolbar1.AddTool(wx.ID_ANY, '', wx.Bitmap('../assets/icons/quit.png'))
     vtoolbar1.Realize()
     vtoolbar2 = wx.ToolBar(self)
-    quitToolbar2 = vtoolbar2.AddTool(wx.ID_ANY, '', wx.Bitmap('D:\\work\\jyjs-projects\\examples\\python\\wxPy-my-tools\\src\\wxpyDemo\\assets\\icons\\exit.png'))
+    quitToolbar2 = vtoolbar2.AddTool(wx.ID_ANY, '', wx.Bitmap('../assets/icons/exit.png'))
     vtoolbar2.Realize()
     self.Bind(wx.EVT_TOOL, self.OnQuit, quitToolbar1)
     self.Bind(wx.EVT_TOOL, self.OnQuit, quitToolbar2)

@@ -2,6 +2,9 @@
 # -*- coding: utf-8 -*-
 import wx
 
+# 解决不支持相对路径问题，兼容win和linux路径
+import os,sys
+os.chdir(sys.path[0])
 class Menu(wx.Frame):
   def __init__(self, *args, **kw):
       super(Menu, self).__init__(*args, **kw)

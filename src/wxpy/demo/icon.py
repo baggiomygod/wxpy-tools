@@ -1,5 +1,8 @@
 import wx
 
+# 解决不支持相对路径问题，兼容win和linux路径
+import os,sys
+os.chdir(sys.path[0])
 APP_EXIT = 1
 
 class IconDemo(wx.Frame):
