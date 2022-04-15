@@ -19,7 +19,6 @@ class DocView:
         vbox.Add(cPan, wx.ID_ANY, flag=wx.EXPAND | wx.ALL, border=0)
         parent.SetSizer(vbox)
 
-
 class ToolPage(wx.Frame):
     def __init__(self, *args, **kw):
         super(ToolPage, self).__init__(*args, **kw)
@@ -58,9 +57,12 @@ class ToolPage(wx.Frame):
             return
         path = fileDialog.GetPath()
         print('文件路径：', path)
+        if not path:
+            return
+        if path.find('*.docx'):
+            return self.openOffice(path, 'kwps.Application')  # word 的接口
         # docx 转 pdf
         # coverPdf(path, path.replace('.docx',  '_' + str(time.time())) + '.pdf')
-
 
 def main():
     app = wx.App()
